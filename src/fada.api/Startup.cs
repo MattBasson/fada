@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-
+using MediatR;
+using MediatR.Pipeline;
+using Microsoft.Extensions.DependencyInjection;
 namespace fada.api
 {
     public class Startup
@@ -32,6 +34,9 @@ namespace fada.api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "fada.api", Version = "v1" });
             });
+
+            services.AddMediatR(typeof(Startup));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
